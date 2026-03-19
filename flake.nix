@@ -23,6 +23,7 @@
         nixpkgs.lib.genAttrs allSystems (
           system:
           f {
+            inherit system;
             pkgs = import nixpkgs { inherit system; };
           }
         );
