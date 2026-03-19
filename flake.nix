@@ -49,8 +49,9 @@
                 embree
                 gcc
                 cmake
+                pkg-config
               ];
-              buildInputs = with pkgs; [ git assimp ] ;
+              buildInputs = with pkgs; [ git assimp dbus ] ;
               buildPhase = ''
                 cmake -Bbuild . -DCMAKE_BUILD_TYPE=Release
                 cmake --build build -j24 --target install
@@ -74,6 +75,7 @@
             packages = with pkgs; [
               clang-tools
               gdb
+              dbus
               # ccache # Optional, but often great for speeding up local C++ builds
             ];
           };
