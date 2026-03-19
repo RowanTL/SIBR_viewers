@@ -30,7 +30,7 @@
     in
     {
       packages = forAllSystems (
-        { pkgs }:
+        { pkgs, ... }:
         {
           default =
             pkgs.stdenv.mkDerivation {
