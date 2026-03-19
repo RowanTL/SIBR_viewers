@@ -38,7 +38,7 @@
               nativeBuildInputs = with pkgs; [
                 glew
                 assimp
-                boost
+                boost188
                 gtk3
                 opencv
                 glfw
