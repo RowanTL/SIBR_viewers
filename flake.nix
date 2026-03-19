@@ -8,7 +8,7 @@
   };
 
   outputs =
-    { self, nixpkgs }:
+    { self, nixpkgs, nixpkgsOld }:
     let
       # Systems supported
       allSystems = [
@@ -26,32 +26,32 @@
           f {
             inherit system;
             pkgs = import nixpkgs { inherit system; };
+            pkgsOld = import nixpkgsOld { inherit system; };
           }
         );
-      # cmake322 = fetchGit
     in
     {
       packages = forAllSystems (
-        { pkgs, ... }:
+        { pkgs, pkgsOld, ... }:
         {
           default =
             pkgs.stdenv.mkDerivation {
               name = "SIBR_viewers";
               src = self;
-              nativeBuildInputs = with pkgs; [
-                glew
-                assimp
-                boost188
-                gtk3
-                opencv
-                glfw
-                ffmpeg
-                eigen
-                libXxf86vm
-                embree
-                gcc
-                cmake
-                pkg-config
+              nativeBuildInputs = [
+                pkgs.glew
+                pkgs.assimp
+                pkgs.boost188
+                pkgs.gtk3
+                pkgs.opencv
+                pkgs.glfw
+                pkgs.ffmpeg
+                pkgs.eigen
+                pkgs.libXxf86vm
+                pkgs.embree
+                pkgs.gcc
+                pkgsOld.cmake
+                pkgs.pkg-config
               ];
               # https://discourse.nixos.org/t/how-to-add-pkg-config-file-to-a-nix-package/8264
               buildInputs = with pkgs; [ git assimp dbus ] ;
