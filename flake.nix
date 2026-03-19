@@ -4,6 +4,7 @@
   inputs = {
     # Latest stable Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgsOld.url = "github:nixos/nixpkgs/98bb5b77c8c6666824a4c13d23befa1e07210ef1.tar.gz";
   };
 
   outputs =
@@ -27,6 +28,7 @@
             pkgs = import nixpkgs { inherit system; };
           }
         );
+      # cmake322 = fetchGit
     in
     {
       packages = forAllSystems (
