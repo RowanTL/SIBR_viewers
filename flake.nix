@@ -68,7 +68,7 @@
         }
       );
       devShells = forAllSystems (
-        { pkgs, system }:
+        { pkgs, pkgsOld, system }:
         {
           default = pkgs.mkShell {
             # inputsFrom automatically pulls in dependencies from your derivation
