@@ -1,0 +1,66 @@
+{
+  description = "SIBR Viewer Flake";
+
+  inputs = {
+    # Latest stable Nixpkgs
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  };
+
+  outputs =
+    { self, nixpkgs }:
+    let
+      # Systems supported
+      allSystems = [
+        "x86_64-linux" # 64-bit Intel/AMD Linux
+        # "aarch64-linux" # 64-bit ARM Linux
+        # "x86_64-darwin" # 64-bit Intel macOS
+        # "aarch64-darwin" # 64-bit ARM macOS
+      ];
+
+      # Helper to provide system-specific attributes
+      forAllSystems =
+        f:
+        nixpkgs.lib.genAttrs allSystems (
+          system:
+          f {
+            pkgs = import nixpkgs { inherit system; };
+          }
+        );
+    in
+    {
+      packages = forAllSystems (
+        { pkgs }:
+        {
+          default =
+            pkgs.stdenv.mkDerivation {
+              name = "SIBR_viewers";
+              src = self;
+              nativeBuildInputs = with pkgs; [
+                glew
+                assimp
+                boost
+                gtk3
+                opencv
+                glfw
+                ffmpeg
+                eigen
+                libXxf86vm
+                embree
+                gcc
+                cmake
+              ];
+              buildInputs = with pkgs; [ git assimp ] ;
+              buildPhase = ''
+                cmake -Bbuild . -DCMAKE_BUILD_TYPE=Release
+                cmake --build build -j24 --target install
+              '';
+              installPhase = ''
+                mkdir -p $out/bin
+                cp SIBR_remoteGaussian_app $out/bin/
+                cp SIBR_gaussianViewer_app $out/bin/
+              '';
+            };
+        }
+      );
+    };
+}
