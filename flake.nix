@@ -62,5 +62,21 @@
             };
         }
       );
+      devShells = forAllSystems (
+        { pkgs, system }:
+        {
+          default = pkgs.mkShell {
+            # inputsFrom automatically pulls in dependencies from your derivation
+            inputsFrom = [ self.packages.${system}.default ];
+
+            # Add extra tools here that you only need for development (not building)
+            packages = with pkgs; [
+              clang-tools
+              gdb
+              # ccache # Optional, but often great for speeding up local C++ builds
+            ];
+          };
+        }
+      );
     };
 }
