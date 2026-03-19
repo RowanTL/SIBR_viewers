@@ -51,6 +51,7 @@
                 cmake
                 pkg-config
               ];
+              # https://discourse.nixos.org/t/how-to-add-pkg-config-file-to-a-nix-package/8264
               buildInputs = with pkgs; [ git assimp dbus ] ;
               buildPhase = ''
                 cmake -Bbuild . -DCMAKE_BUILD_TYPE=Release
