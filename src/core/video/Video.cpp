@@ -212,7 +212,7 @@ namespace sibr
 
 		if (getDisplayTex() && getDisplayTex()->handle() ) {
 			std::string infos = "size : " + std::to_string((int)getDisplayTex()->w()) + " " + std::to_string((int)getDisplayTex()->h()) + ", framerate : " + std::to_string(getFrameRate());
-			ImGui::Text(infos.c_str());
+			ImGui::Text("%s", infos.c_str());
 			sibr::Vector2f displayTexSize(getDisplayTex()->w(), getDisplayTex()->h());
 			sibr::Vector2i viewResolution = (ratio_display*displayTexSize).cast<int>();
 			
