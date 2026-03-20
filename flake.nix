@@ -43,7 +43,7 @@
                 cudatoolkit
                 git gitRepo gnupg autoconf curl procps gnumake util-linux m4 gperf unzip binutils pkg-config
               ];
-              # https://discourse.nixos.org/t/how-to-add-pkg-config-file-to-a-nix-package/8264
+              # https://nixos.wiki/wiki/Packaging/Quirks_and_Caveats
               buildInputs = with pkgs; [
                 eigen glew assimp boost188 gtk3 opencv glfw ffmpeg libXxf86vm embree
                 linuxPackages.nvidia_x11 libGLU libGL freeglut zlib ncurses5 libxcb
@@ -83,9 +83,6 @@
 
             shellHook = ''
               export CUDA_PATH=${pkgs.cudatoolkit}
-              # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.ncurses5}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.libxcb}/lib
-              # export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
-              # export EXTRA_CCFLAGS="-I/usr/include"
             '';
           };
         }
