@@ -49,7 +49,7 @@
                 pkgs.eigen
                 pkgs.libXxf86vm
                 pkgs.embree
-                pkgs.gcc
+                pkgsOld.gcc
                 pkgsOld.cmake
                 pkgs.pkg-config
                 pkgs.git pkgs.gitRepo pkgs.gnupg pkgs.autoconf pkgs.curl
