@@ -38,30 +38,17 @@
             pkgs.stdenv.mkDerivation {
               name = "SIBR_viewers";
               src = self;
-              nativeBuildInputs = [
-                pkgs.glew
-                pkgs.assimp
-                pkgs.boost188
-                pkgs.gtk3
-                pkgs.opencv
-                pkgs.glfw
-                pkgs.ffmpeg
-                pkgs.eigen
-                pkgs.libXxf86vm
-                pkgs.embree
+              nativeBuildInputs = with pkgs; [
                 pkgsOld.cmake
-                pkgs.pkg-config
-                pkgs.git pkgs.gitRepo pkgs.gnupg pkgs.autoconf pkgs.curl
-                pkgs.procps pkgs.gnumake pkgs.util-linux pkgs.m4 pkgs.gperf pkgs.unzip
-                pkgs.cudatoolkit pkgs.linuxPackages.nvidia_x11
-                pkgs.libGLU pkgs.libGL
-                pkgs.xorg.libXi pkgs.xorg.libXmu pkgs.freeglut
-                pkgs.xorg.libXext pkgs.xorg.libX11 pkgs.xorg.libXv pkgs.xorg.libXrandr pkgs.zlib 
-                pkgs.ncurses5 pkgs.stdenv.cc pkgs.binutils
-                pkgs.stdenv.cc.cc.lib
+                cudatoolkit
+                git gitRepo gnupg autoconf curl procps gnumake util-linux m4 gperf unzip binutils
               ];
               # https://discourse.nixos.org/t/how-to-add-pkg-config-file-to-a-nix-package/8264
-              buildInputs = with pkgs; [ git assimp dbus ] ;
+              buildInputs = with pkgs; [
+                eigen glew assimp boost188 gtk3 opencv glfw ffmpeg libXxf86vm embree dbus
+                linuxPackages.nvidia_x11 libGLU libGL freeglut zlib ncurses5 libxcb
+                xorg.libXi xorg.libXmu xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr
+              ];
               buildPhase = ''
                 export CUDA_PATH=${pkgs.cudatoolkit}
                 # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.ncurses5}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.libxcb}/lib
