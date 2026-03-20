@@ -45,7 +45,7 @@
               ];
               # https://nixos.wiki/wiki/Packaging/Quirks_and_Caveats
               buildInputs = with pkgs; [
-                eigen glew assimp boost180 gtk3 opencv glfw pkgsOld.ffmpeg libXxf86vm embree
+                eigen glew assimp boost180 gtk3 opencv glfw pkgsOld.ffmpeg libXxf86vm pkgsOld.embree
                 linuxPackages.nvidia_x11 libGLU libGL freeglut zlib ncurses5 libxcb
                 xorg.libXi xorg.libXmu xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr
               ];
