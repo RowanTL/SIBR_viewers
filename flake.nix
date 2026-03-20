@@ -64,9 +64,9 @@
               buildInputs = with pkgs; [ git assimp dbus ] ;
               buildPhase = ''
                 export CUDA_PATH=${pkgs.cudatoolkit}
-                export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.ncurses5}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.libxcb}/lib
-                export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
-                export EXTRA_CCFLAGS="-I/usr/include"
+                # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.ncurses5}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.libxcb}/lib
+                # export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
+                # export EXTRA_CCFLAGS="-I/usr/include"
 
                 cmake -Bbuild . -DCMAKE_BUILD_TYPE=Release
                 cmake --build build -j24 --target install
@@ -97,8 +97,8 @@
             shellHook = ''
               export CUDA_PATH=${pkgs.cudatoolkit}
               # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.ncurses5}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.libxcb}/lib
-              export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
-              export EXTRA_CCFLAGS="-I/usr/include"
+              # export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
+              # export EXTRA_CCFLAGS="-I/usr/include"
             '';
           };
         }
