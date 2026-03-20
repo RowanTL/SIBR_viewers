@@ -57,7 +57,7 @@
                 pkgs.cudatoolkit pkgs.linuxPackages.nvidia_x11
                 pkgs.libGLU pkgs.libGL
                 pkgs.xorg.libXi pkgs.xorg.libXmu pkgs.freeglut
-                pkgs.xorg.libXext pkgs.xorg.libX11 pkgs.xpkgs.org.libXv pkgs.xorg.libXrandr pkgs.zlib 
+                pkgs.xorg.libXext pkgs.xorg.libX11 pkgs.xorg.libXv pkgs.xorg.libXrandr pkgs.zlib 
                 pkgs.ncurses5 pkgs.stdenv.cc pkgs.binutils
                 pkgs.stdenv.cc.cc.lib
               ];
