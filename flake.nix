@@ -52,10 +52,23 @@
                 pkgs.gcc
                 pkgsOld.cmake
                 pkgs.pkg-config
+                pkgs.git pkgs.gitRepo pkgs.gnupg pkgs.autoconf pkgs.curl
+                pkgs.procps pkgs.gnumake pkgs.util-linux pkgs.m4 pkgs.gperf pkgs.unzip
+                pkgs.cudatoolkit pkgs.linuxPackages.nvidia_x11
+                pkgs.libGLU pkgs.libGL
+                pkgs.xorg.libXi pkgs.xorg.libXmu pkgs.freeglut
+                pkgs.xorg.libXext pkgs.xorg.libX11 pkgs.xpkgs.org.libXv pkgs.xorg.libXrandr pkgs.zlib 
+                pkgs.ncurses5 pkgs.stdenv.cc pkgs.binutils
+                pkgs.stdenv.cc.cc.lib
               ];
               # https://discourse.nixos.org/t/how-to-add-pkg-config-file-to-a-nix-package/8264
               buildInputs = with pkgs; [ git assimp dbus ] ;
               buildPhase = ''
+                export CUDA_PATH=${pkgs.cudatoolkit}
+                export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.ncurses5}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.libxcb}/lib
+                export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
+                export EXTRA_CCFLAGS="-I/usr/include"
+
                 cmake -Bbuild . -DCMAKE_BUILD_TYPE=Release
                 cmake --build build -j24 --target install
               '';
@@ -81,6 +94,13 @@
               dbus
               # ccache # Optional, but often great for speeding up local C++ builds
             ];
+
+            shellHook = ''
+              export CUDA_PATH=${pkgs.cudatoolkit}
+              export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.ncurses5}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.libxcb}/lib
+              export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
+              export EXTRA_CCFLAGS="-I/usr/include"
+            '';
           };
         }
       );
