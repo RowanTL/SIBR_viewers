@@ -51,9 +51,6 @@
               ];
               buildPhase = ''
                 export CUDA_PATH=${pkgs.cudatoolkit}
-                # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.ncurses5}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.libxcb}/lib
-                # export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
-                # export EXTRA_CCFLAGS="-I/usr/include"
 
                 cmake -Bbuild . -DCMAKE_BUILD_TYPE=Release
                 cmake --build build -j24 --target install
@@ -80,6 +77,8 @@
               dbus
               # ccache # Optional, but often great for speeding up local C++ builds
             ];
+
+            NIX_CFLAGS_COMPILE = "-isystem ${pkgs.eigen}/include/eigen3";
 
             shellHook = ''
               export CUDA_PATH=${pkgs.cudatoolkit}
