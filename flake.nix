@@ -42,6 +42,7 @@
                 pkgsOld.cmake
                 cudatoolkit
                 git gitRepo gnupg autoconf curl procps gnumake util-linux m4 gperf unzip binutils
+                dbus
               ];
               # https://discourse.nixos.org/t/how-to-add-pkg-config-file-to-a-nix-package/8264
               buildInputs = with pkgs; [
