@@ -594,7 +594,7 @@ namespace sibr {
 				}
 				if (ImGui::IsItemHovered()) {
 					ImGui::BeginTooltip();
-					ImGui::Text(mesh.getInfos().c_str());
+					ImGui::Text("%s", mesh.getInfos().c_str());
 					ImGui::EndTooltip();
 				}
 				ImGui::NextColumn();

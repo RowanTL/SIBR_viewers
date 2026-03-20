@@ -14,7 +14,7 @@
 
 #include <imgui/imgui.h>
 
-#define GUI_TEXT(txt) { std::stringstream sss; sss << txt << std::endl;  ImGui::Text(sss.str().c_str()); }
+#define GUI_TEXT(txt) { std::stringstream sss; sss << txt << std::endl;  ImGui::Text("%s", sss.str().c_str()); }
 
 namespace sibr
 {
@@ -131,7 +131,7 @@ namespace sibr
 			for (int im : current_layer->image_selection.get()) {
 				s << im << ", ";
 			}
-			ImGui::Text(s.str().c_str());
+			ImGui::Text("%s", s.str().c_str());
 
 		}
 		ImGui::End();

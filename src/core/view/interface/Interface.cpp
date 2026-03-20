@@ -198,7 +198,7 @@ namespace sibr {
 		if (currentScale == 0 && currentActivePos.isDefined) {
 			std::stringstream ss;
 			ss << "Image : " << currentActivePos.im << ", pixel : " << currentActivePos.pos << std::endl;
-			ImGui::Text(ss.str().c_str());
+			ImGui::Text("%s", ss.str().c_str());
 			if (currentActivePos.isDefined) {
 				//std::cout << imagesPtr[currentLayer][currentActivePos.im] << std::endl;
 				//std::cout << imagesPtr[currentLayer][currentActivePos.im]->size() << std::endl;

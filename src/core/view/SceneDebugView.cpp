@@ -518,7 +518,7 @@ namespace sibr
 			//for (uint i = 0; i < _cameras.size(); ++i) 
 			{
 				std::string name = "cam_" + intToString<4>(_cameraIdInfoGUI);
-				ImGui::Text(name.c_str());
+				ImGui::Text("%s", name.c_str());
 				ImGui::NextColumn();
 
 				if (ImGui::Button(("SnapTo##" + name).c_str())) {
@@ -582,7 +582,7 @@ namespace sibr
 					case ASPECT: tmp << cam.aspect(); break;
 					default: break;
 				}
-				ImGui::Text(tmp.str().c_str());
+				ImGui::Text("%s", tmp.str().c_str());
 				ImGui::NextColumn();
 				ImGui::Columns(1);
 			}
