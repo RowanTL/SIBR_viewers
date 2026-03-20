@@ -41,12 +41,11 @@
               nativeBuildInputs = with pkgs; [
                 pkgsOld.cmake
                 cudatoolkit
-                git gitRepo gnupg autoconf curl procps gnumake util-linux m4 gperf unzip binutils
-                dbus
+                git gitRepo gnupg autoconf curl procps gnumake util-linux m4 gperf unzip binutils pkg-config
               ];
               # https://discourse.nixos.org/t/how-to-add-pkg-config-file-to-a-nix-package/8264
               buildInputs = with pkgs; [
-                eigen glew assimp boost188 gtk3 opencv glfw ffmpeg libXxf86vm embree dbus
+                eigen glew assimp boost188 gtk3 opencv glfw ffmpeg libXxf86vm embree
                 linuxPackages.nvidia_x11 libGLU libGL freeglut zlib ncurses5 libxcb
                 xorg.libXi xorg.libXmu xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr
               ];
