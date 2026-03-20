@@ -25,7 +25,7 @@
           system:
           f {
             inherit system;
-            pkgs = import nixpkgs { inherit system; };
+            pkgs = import nixpkgs { inherit system; config = { allowUnfree = true; }; };
             pkgsOld = import nixpkgsOld { inherit system; };
           }
         );
