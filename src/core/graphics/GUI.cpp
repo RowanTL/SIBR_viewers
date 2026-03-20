@@ -79,7 +79,7 @@ namespace sibr
 		ImGui::Begin(text.c_str(), nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoInputs);
 		ImGui::SetWindowFontScale(ImGui::GetIO().FontGlobalScale);
 
-		ImGui::Text(text.c_str());
+		ImGui::Text("%s", text.c_str());
 		// Get back the draw list.
 		ImDrawList * drawlist = ImGui::GetWindowDrawList();
 		const int vertCount = drawlist->VtxBuffer.Size;
